@@ -1,0 +1,297 @@
+.add-product-container{
+  display: flex;
+  justify-content: center;
+}
+
+.add-product{
+  width: 50px;
+  color: inherit;
+  border: 4px solid;
+  border-radius: 100px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+
+/* Lista */
+
+.productsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 120px;
+}
+
+/* Card */
+
+.productWrapper {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.productWrapper.dragging {
+  cursor: grabbing;
+}
+
+.productCard {
+  background: #fff;
+  color: #222;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Cópia visual arrastável */
+
+.productOverlay {
+  cursor: grabbing;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.productOverlay .productCard {
+  border-color: #888;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.overlayChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  font-size: 24px;
+}
+
+/* Cabeçalho */
+
+.productTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.productHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.productHeader:active {
+  cursor: grabbing;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.productInfo strong {
+  overflow-wrap: anywhere;
+}
+
+.productInfo span {
+  font-size: 13px;
+  color: #777;
+}
+
+.productSummary {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.chevronButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Detalhes */
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.productDetails input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.productDetails label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.produtoQuantidade {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.produtoQuantidade button {
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.produtoQuantidade p {
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Lixeira - sempre visível temporariamente */
+
+.trashZone {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(100% - 40px);
+  height: 68px;
+  border-radius: 10px;
+
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.trashBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  background: #dc3545;
+  color: #fff;
+  border-radius: 50%;
+
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+
+  transition:
+    width 0.25s ease,
+    border-radius 0.25s ease;
+}
+
+.trashZoneActive .trashBackground {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.trashIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Modal */
+
+.confirmOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.confirmModal {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 360px;
+  padding: 24px;
+
+  background: #fff;
+  color: #222;
+  border-radius: 16px;
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.confirmModal h3 {
+  margin: 0 0 12px;
+}
+
+.confirmModal p {
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.confirmActions button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background: #eee;
+  color: #333;
+}
+
+.confirmButton {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+  .trashBackground {
+    transition: none;
+  }
+}
